@@ -16,16 +16,15 @@ from .views import (
 
 app_name = 'djangoapp'
 urlpatterns = [
-    path('', index, name='index'),
-    path('', get_dealerships, name='get_dealerships'),
-    path('about/', about, name='about'),
-    path('contact/', contact, name='contact'),
-    path('login/', login_request, name='login_request'),
-    path('logout/', logout_request, name='logout_request'),
-    path('registration/', registration_request, name='registration_request'),
-    path('dealer/<int:dealer_id>/', get_dealer_details, name='get_dealer_details'),
-    path('dealer/<int:dealer_id>/add_review/', add_review, name='add_review'),
-    path(route='', view=views.get_dealerships, name='index'),
+    path('', views.index, name='index'),  
+    path('get_dealerships/', views.get_dealerships, name='get_dealerships'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
+    path('login/', views.login_request, name='login_request'),
+    path('logout/', views.logout_request, name='logout_request'),
+    path('registration/', views.registration_request, name='registration_request'),
+    path('dealer/<int:dealer_id>/', views.get_dealer_details, name='get_dealer_details'),
+    path('dealer/<int:dealer_id>/add_review/', views.add_review, name='add_review'),
 
     # path for dealer reviews view
 
