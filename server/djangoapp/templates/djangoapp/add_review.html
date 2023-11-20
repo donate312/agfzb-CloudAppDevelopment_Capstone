@@ -11,6 +11,22 @@
 
 </head>
     <body>
-    <!--Add review form here -->
+        {% block content %}
+        <h2>Add Review</h2>
+        <form method="post" action="{% url 'djangoapp:add_review' %}">
+          {% csrf_token %}
+          <label for="dealer_id">Select Dealer:</label>
+          <select name="dealer_id" required>
+            {% for dealer in dealers %}
+              <option value="{{ dealer.id }}">{{ dealer.name }}</option>
+            {% endfor %}
+          </select><br>
+          <label for="rating">Rating:</label>
+          <input type="number" name="rating" required><br>
+          <label for="comment">Comment:</label>
+          <textarea name="comment" required></textarea><br>
+          <button type="submit">Submit Review</button>
+        </form>
+         {% endblock %}
     </body>
 </html>

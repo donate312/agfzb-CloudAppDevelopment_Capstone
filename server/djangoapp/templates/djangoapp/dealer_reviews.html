@@ -1,0 +1,15 @@
+<!-- djangoapp/templates/djangoapp/dealer_reviews.html -->
+{% extends 'djangoapp/base.html' %}
+
+{% block content %}
+  <h2>Dealer Reviews</h2>
+  {% if reviews %}
+    <ul>
+      {% for review in reviews %}
+        <li>{{ review.rating }} - {{ review.comment }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No reviews available.</p>
+  {% endif %}
+{% endblock %}

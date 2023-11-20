@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils.timezone import now
 
-class reviews(models.Model):
+
+class Review(models.Model):
     # Your fields here
     rating = models.IntegerField()
     comment = models.TextField()
@@ -11,7 +12,11 @@ class reviews(models.Model):
         return f"Rating: {self.rating}, Comment: {self.comment}"
 
 class Dealer(models.Model):
-    # Your Dealer model fields
+    name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    zip = models.CharField(max_length=10)
     pass  # Add your fields as needed
 
 class CarMake(models.Model):

@@ -10,17 +10,34 @@ from datetime import datetime
 from django.shortcuts import render
 import logging
 import json
-from .models import reviews  # Import your Review model
-from .models import Dealer  # Import your Dealer model
+from .models import Review
+from .models import Dealer
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
+def signup(request):
+    if request.method == 'POST':
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        username = request.POST['username']
+        password = request.POST['password']
+
+        # Create a new user
+        user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
+
+        # Log in the user
+        login(request, user)
+
+        # Redirect to the index or another page after signup
+        return redirect('djangoapp:index')
+
+    return render(request, 'djangoapp/signup.html')
 
 # Update the `get_dealerships` view
 def get_dealerships(request):
-    context = {}
     if request.method == "GET":
+        context = {}
         return render(request, 'djangoapp/index.html', context)
 
 # Update the `get_dealer_details` view
@@ -83,7 +100,17 @@ def registration_request(request):
         password = request.POST['password']
         User.objects.create_user(username=username, password=password)
         messages.success(request, 'Registration successful. Please log in.')
-        return redirect('djangoapp:login_request')
+        return redirect('djangoapp:login')
+    return render(request, 'djangoapp/registration.html')
+     # Create a new user
+    user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
+
+    # Log in the user
+    login(request, user)
+
+    # Redirect to the index or another page after registration
+    return redirect('djangoapp:index')
+
     return render(request, 'djangoapp/registration.html')
 
 
@@ -93,7 +120,10 @@ def get_dealerships(request):
     if request.method == "GET":
         return render(request, 'djangoapp/index.html', context)
 
-
+def dealer_reviews(request):
+    reviews = Review.objects.all()  # Adjust the queryset based on your model structure
+    context = {'reviews': reviews}
+    return render(request, 'djangoapp/dealer_reviews.html', context)
 
 
 def get_dealer_details(request, dealer_id):
