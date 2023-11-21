@@ -6,12 +6,13 @@ class Review(models.Model):
     # Your fields here
     rating = models.IntegerField()
     comment = models.TextField()
-    # ... other fields
+    
 
     def __str__(self):
         return f"Rating: {self.rating}, Comment: {self.comment}"
 
 class Dealer(models.Model):
+    
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
@@ -36,7 +37,7 @@ class CarModel(models.Model):
     dealer_id = models.IntegerField()  # Assuming dealer_id is an integer, you may need to adjust this
     car_type = models.CharField(max_length=10, choices=CAR_TYPES)
     year = models.DateField()
-    # Add other fields as needed
+    
 
     def __str__(self):
         return f"{self.make} - {self.name} ({self.year.year})"
