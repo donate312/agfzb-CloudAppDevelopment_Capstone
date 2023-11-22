@@ -24,6 +24,9 @@ class CarMake(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
 
+    def __str__(self):
+        return f"{self.make} - {self.name} ({self.year.year})"
+
 class CarModel(models.Model):
     CAR_TYPES = [
         ('SEDAN', 'Sedan'),

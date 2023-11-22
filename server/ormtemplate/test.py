@@ -1,6 +1,3 @@
-from django.test import TestCase
-
-# Create your tests here.
 # Django specific settings
 import inspect
 import os
@@ -10,7 +7,7 @@ from django.db import connection
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 # Your application specific imports
-from standalone.models import Test
+from crud.models import Test
 
 # Delete all data
 def clean_data():
