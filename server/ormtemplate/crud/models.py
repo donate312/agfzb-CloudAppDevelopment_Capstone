@@ -22,22 +22,23 @@ class Dealer(models.Model):
     pass  # Add your fields as needed
 
 class CarMake(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=255)
     description = models.TextField()
 
     def __str__(self):
-        return f"{self.make} - {self.name} ({self.year.year})"
+        return f"{self.name} - {self.name} ({self.year.year})"
 
 class CarModel(models.Model):
     CAR_TYPES = [
         ('SEDAN', 'Sedan'),
         ('SUV', 'SUV'),
         ('WAGON', 'Wagon'),
-
-       def __str__(self):
+    ]
+    
+    def __str__(self):
         return f"{self.make.name} - {self.name} ({self.year})"
 
-    ]
+    
 
     make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)

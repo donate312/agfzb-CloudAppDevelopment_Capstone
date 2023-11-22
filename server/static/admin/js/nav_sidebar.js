@@ -37,3 +37,4 @@
         });
     }
 }
+    <script src="{% static 'admin/js/nav_sidebar.js' %}"></script>
